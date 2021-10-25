@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1">
+    <title>home</title>
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+        }
+        ul:after{
+            content: '';
+            display: block;
+            clear: both;
+        }
+        ul li{
+            list-style: none;
+            float: left;
+            width: 50%;
+        }
+        .line{
+            display: block;
+            height:200px;
+            text-align: center;
+            text-decoration: none;
+            font-size: 30px;
+            color: #737373;
+            line-height: 200px;
+        } 
+        li:nth-child(1){
+            background-color:#F25022;
+        }
+        li:nth-child(2){
+            background-color: #7FBA00;
+        }
+        li:nth-child(3){
+            background-color: #00A4EF;
+        }
+        li:nth-child(4){
+            background-color: #FFB900
+;
+        }
+    </style>
+</head>
+<body>
+    <h3>点击选择线路:</h3> 
+    <ul>
+        <li><a class="line" href="form">一</a></li>
+        <li><a class="line" href="form">二</a></li>
+        <li><a class="line" href="form">三</a></li>
+        <li><a class="line" href="form">四</a></li>
+    </ul>
+</body>
+</html>

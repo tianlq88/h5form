@@ -1,0 +1,335 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=0">
+    <title>form</title>
+    <style>
+        *,
+        *::before,
+        *::after{
+            padding: 0;
+            margin: 0;
+            box-sizing: border-box;
+        }
+        html{
+            background-color: #ddd;
+        }
+        header{
+            height: 170px;
+            background-image: url(/static/images/bg.png);
+            background-size: cover;
+            background-position-y: 100%;
+            text-align: center;
+            padding-top: 25px;
+        }
+        .title{
+            color: #222;
+            font-size: 18px;
+            padding: 10px;
+        }
+        .desc{
+            color: #646464;
+            font-size: 14px;
+        }
+        input,select{
+            /* A reset of styles, including removing the default dropdown arrow */
+            appearance: none;
+            -webkit-appearance: none;
+            /* Additional resets for further consistency */
+            background-color: transparent;
+            border: none;
+            outline: none;
+            width: 100%;
+        }
+        .select{
+            position: relative;
+            border: 1px solid rgb(204, 213, 219);
+            font-size: 14px;
+            cursor: pointer;
+            background-color: transparent;
+            /* line-height: 1.1; */
+        }
+        .select::after {
+            content: '';
+            position: absolute;
+            top: 14px;
+            right: 10px;
+            width: 0;
+            height: 0;
+            border-left: 8px solid transparent;
+            border-right: 8px solid transparent;
+            border-top: 10px solid rgb(204, 213, 219);
+            pointer-events: none;
+        }
+        form{
+            margin: -50px 15px 0 15px;
+            background-color:  #fff;
+            border-radius: 10px;
+            padding: 10px;
+            padding-top: 10px;
+        }
+        .form_group{
+            padding: 0 10px;
+            margin-bottom: 10px;
+            position: relative;
+        } 
+        .form_group:last-child{
+            padding-top: 50px;
+        }
+        .validation_error:after{
+            content: attr(error_message);
+            position: absolute;
+            top: 3px;
+            right: 10px;
+            color: #ff5448;
+            font-size: 12px;
+            animation: fadeIn .5s linear 1; 
+        }
+        .form_group.error>small{
+            position: absolute;
+            top: 3px;
+            right: 10px;
+            color: #ff5448;
+            font-size: 12px;
+            animation: fadeIn .5s linear 1; 
+        }
+        .title_box{
+            padding-bottom: 8px;
+            color: rgb(51, 51, 51);
+            font-size: 14px;
+            font-weight: bold;
+        }
+        .title_box.required{
+
+        }
+        .required label:before {
+            color: #e32;
+            content: '* ';
+            display:inline;
+        }
+        .control_box{
+            background-color: #fff;
+        }
+        .control_box.select{
+            border: none;
+        } 
+        .form_control{
+            width: 100%;
+            font-size: 16px;
+            padding: 9px 8px;
+            border: 1px solid rgb(144, 145, 146); 
+            background-color: rgb(255, 255, 255); 
+        }
+        .form_group.error>.control_box>.form_control{
+            border-color: #ff5448;
+        }
+        .form_control[type='submit']{
+            /*background-color: rgb(42, 116, 70);*/
+            background-color: #ffc300;
+            border-color: #ffc300;
+            color: #222;
+            font-size: 16px;
+        }
+        @keyframes fadeIn{
+            0%{opacity:0}
+            100%{opacity:1}
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="title">请填写表单标题</div>
+        <div class="desc">请填写表单描述文字，不超过100字</div>
+    </header>
+    <form action='/users' method='post' autocomplete="off">
+        <div class='form_group'>
+            <div class='title_box required'>
+                <label for='line'>线路</label>
+            </div>
+            <div class='control_box select'>
+                <select class='form_control' name='line'>
+                    <option value='1'>线路一</option>
+                    <option value='2'>线路二</option>
+                    <option value='3'>线路三</option>
+                    <option value='4'>线路四</option>
+                </select>
+            </div>
+        </div>
+        <div class='form_group'>
+            <div class='title_box required'>
+                <label for='name'>姓名</label>
+            </div>
+            <div class='control_box'>
+                <input class='form_control' type='text' name='name'/>
+            </div>
+            <small></small>
+        </div>
+        <div class='form_group'>
+            <div class='title_box required'>
+                <label for='password'>密码</label>
+            </div>
+            <div class='control_box'>
+                <input class='form_control' type='password' name='password'/>
+            </div>
+            <small></small>
+        </div>
+        <div class='form_group'>
+            <div class='title_box required'>
+                <label for='phone_number'>手机号</label>
+            </div>
+            <div class='control_box'>
+                <input class='form_control' type='text' name='phone_number'/>
+            </div>
+            <small></small>
+        </div>
+        <div class='form_group'>
+            <div class='title_box required'>
+                <label for='profession'>职业</label>
+            </div>
+            <div class='control_box'>
+                <input class='form_control' type='text' name='profession'/>
+            </div>
+            <small></small>
+        </div>
+        <div class='form_group'>
+            <div class='title_box required'>
+                <label for='email'>邮箱</label>
+            </div>
+            <div class='control_box'>
+                <input class='form_control' type='text' name='email'/>
+            </div>
+            <small></small>
+        </div>
+        
+        <div class='form_group'>
+            <div class='control_box'>
+                <input class='form_control' type='submit' value='提交'/>
+            </div>
+        </div>
+    </form>
+    <script>
+        (function(){
+            function isMobile() {
+                    return (
+                        /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini|Mobi/i.test(
+                            navigator.userAgent
+                        ) || window.innerWidth < 500
+                    );
+                }
+            if(isMobile()){
+                console.log('手机访问');
+            }else{
+                console.log('电脑访问');
+            }
+            // show a message with a type of the input
+            function showMessage(input, message, type) {
+                // get the small element and set the message
+                const msg = input.parentNode.parentNode.querySelector("small");
+                msg.innerText = message;
+                // update the class for the input
+                //var cls = type == true ? "success" : "error";
+                input.parentNode.parentNode.classList.toggle("error", type==false);
+                return type;
+            }
+            const NAME_REQUIRED = "姓名不能为空";
+            const PASSWORD_REQUIRED = "密码不能为空";
+            const PHONENUMBER_REQUIRED = "手机号不能为空";
+            const PROFESSION_REQUIRED = "职业不能为空";
+            const EMAIL_REQUIRED = "邮箱不能为空";
+            const EMAIL_INVALID = "邮箱格式错误";
+            var form = document.forms[0];
+            function errorExist(){
+                var form_group_elements = form.querySelectorAll('div.form_group.error');
+                var flag = false;
+                [].forEach.call(form_group_elements, function(element){
+                    if(element.classList.contains('error')){
+                        flag = true;
+                    }
+                });
+                return flag;
+            }
+            function showSuccess(input) {
+                return showMessage(input, "", true);
+            }
+            function showError(input, message) {
+                return showMessage(input, message, false);
+            }
+            function clearError(input){
+                const msg = input.parentNode.parentNode.querySelector("small");
+                msg.innerText = "";
+            }
+            function hasValue(input, message) {
+                if (input.value.trim() === "") {
+                    return showError(input, message);
+                }
+                return showSuccess(input);
+            }
+            function validateEmail(input, requiredMsg, invalidMsg) {
+                // check if the value is not empty
+                if (!hasValue(input, requiredMsg)) {
+                    return false;
+                }
+                // validate email format
+                const emailRegex =
+                    /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+
+                const email = input.value.trim();
+                if (!emailRegex.test(email)) {
+                    return showError(input, invalidMsg);
+                }
+                return true;
+            }
+            form.addEventListener('submit', function(event){
+                // stop form submission
+                event.preventDefault();
+                // if error message is not shown continue;
+                if(!errorExist()){
+                    // validate the form
+                    let nameValid = hasValue(name, NAME_REQUIRED);
+                    let passwordValid = hasValue(password, PASSWORD_REQUIRED);
+                    let phoneNumberValid = hasValue(phone_number, PHONENUMBER_REQUIRED);
+                    let professionValid = hasValue(profession, PROFESSION_REQUIRED);
+                    let emailValid = validateEmail(email, EMAIL_REQUIRED, EMAIL_INVALID);
+                    // if valid, submit the form.
+                    if (nameValid&&passwordValid&&phoneNumberValid&&professionValid&&emailValid) {
+                        alert("Demo only. No form was posted.");
+                    }
+                }else{
+                    alert("invalid");
+                }
+            });
+            var inputs = form.getElementsByTagName('input');
+            [].forEach.call(inputs, function(element){
+                element.addEventListener("keydown", function(event){
+                if (event.keyCode == 13) {
+                    event.preventDefault();
+                    return false;
+                }
+            }, false);
+            });
+            var name = form.elements['name'];
+            name.addEventListener('input', function(event) {
+                var test = hasValue(name, NAME_REQUIRED);
+            }, false);
+            var password = form.elements['password'];
+            password.addEventListener("input", function(event) {
+                var test = hasValue(password, PASSWORD_REQUIRED);
+            }, false);
+            var phone_number = form.elements['phone_number'];
+            phone_number.addEventListener("input", function(event) {
+                var test = hasValue(phone_number, PHONENUMBER_REQUIRED);
+            }, false);
+            var profession = form.elements['profession'];
+            profession.addEventListener("input", function(event) {
+                var test = hasValue(profession, PROFESSION_REQUIRED);
+            }, false);
+            var email = form.elements['email'];
+            email.addEventListener('input', function(event){
+                var test = hasValue(email, EMAIL_REQUIRED, EMAIL_INVALID);
+            }, false);
+        })();
+    </script>
+</body>
+</html>
