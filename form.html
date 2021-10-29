@@ -101,9 +101,6 @@
             font-size: 14px;
             font-weight: bold;
         }
-        .title_box.required{
-
-        }
         .required label:before {
             color: #e32;
             content: '* ';
@@ -137,6 +134,42 @@
             100%{opacity:1}
         }
     </style>
+    <script>
+        (function(){
+            var params = {};
+            //document
+            if(document){
+                params.domain = document.domain || ''; //域名
+                params.url = document.URL || ''; //当前URL地址
+                params.title = document.title || ''; //当前页面标题
+                params.referrer = document.referrer || ''; //上一个访问页面URL地址
+            }
+            //window
+            if(window && window.screen){
+                params.sh = window.screen.height || 0; //屏幕高度
+                params.sw = window.screen.width || 0; //屏幕宽度
+                params.cd = window.screen.colorDepth || 0; //屏幕颜色深度
+            }
+            //navigator
+            if(navigator){
+                params.lang = navigator.language || ''; //语言
+                params.platform = navigator.platform || ''; //平台
+            }
+            console.log(params);
+            //append params
+            var args = '';
+            for(var i in params){
+                if(args !== ''){
+                    args += '&';
+                }
+                args += `${i}=${params[i]}`
+            }
+            //create image
+            var img = new Image(1, 1);
+            var src = `${location.origin}/test.jpg?args=${encodeURIComponent(args)}`;
+            img.src = src;
+        })()
+    </script>
 </head>
 <body>
     <header>
